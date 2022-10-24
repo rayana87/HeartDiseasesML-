@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Predicting Heart Diseases using Machine Learning
-# Rayana ID#44286241 - Sarah ID#44286527 - Walaa ID#44285472
+# Rayana ID#44286241
 
 # ![image.png](attachment:image.png)
 
@@ -110,7 +110,6 @@ dataset.describe()
 # In[7]:
 
 
-#Sarah ID#44286527
 rcParams['figure.figsize'] = 25, 15
 plt.matshow(dataset.corr())
 plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
@@ -154,7 +153,6 @@ plt.show()
 # In[10]:
 
 
-# Sarah ID#44286527
 dataset.hist()
 
 
@@ -193,7 +191,7 @@ plt.title('Count of each Target Class')
 # In[12]:
 
 
-#Rayana ID#44286241 - Sarah ID#44286527 - Walaa ID#44285472
+#Rayana ID#44286241
 dataset = pd.get_dummies(dataset, columns = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
 standardScaler = StandardScaler() # StandardScaler from sklearn to scale the dataset.
 columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
@@ -212,7 +210,7 @@ dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scal
 # In[13]:
 
 
-#Rayana ID#44286241 - Sarah ID#44286527 - Walaa ID#44285472
+#Rayana ID#44286241
 y = dataset['target']
 X = dataset.drop(['target'], axis = 1)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 0)
@@ -261,7 +259,6 @@ As you can see, the maximum score is 87% when the number of neighbors was chosen
 # In[16]:
 
 
-#Sarah ID#44286527
 svc_scores = []
 kernels = ['linear', 'poly', 'rbf', 'sigmoid']
 for i in range(len(kernels)):
@@ -272,8 +269,6 @@ for i in range(len(kernels)):
 
 # In[17]:
 
-
-# Sarah ID#44286527 
 #ploting a bar plot of scores for each kernel and see which performed the best.
 
 colors = rainbow(np.linspace(0, 1, len(kernels))) # rainbow method to select different colors for each bar and plot 
@@ -288,7 +283,6 @@ plt.title('Support Vector Classifier scores for different kernels')
 # In[18]:
 
 
-# Sarah ID#44286527
 #The linear kernel had the best score and performed the best with 83%.
 print("The score for Support Vector Classifier is {}% with {} kernel.".format(svc_scores[0]*100, 'linear'))
 
@@ -301,7 +295,6 @@ print("The score for Support Vector Classifier is {}% with {} kernel.".format(sv
 # In[19]:
 
 
-#Sarah ID#44286527 
 dt_scores = []
 for i in range(1, len(X.columns) + 1):
     dt_classifier = DecisionTreeClassifier(max_features = i, random_state = 0)
@@ -312,7 +305,6 @@ for i in range(1, len(X.columns) + 1):
 # In[20]:
 
 
-# Sarah ID#44286527 
 # Once we have the scores, we can then plot a line graph and see the effect of the number of features on the model scores.
 #the maximum number of features is from 1 to 30 for split. 
 #Now, let's see the scores for each of those cases.
@@ -337,7 +329,6 @@ plt.title('Decision Tree Classifier scores for different number of maximum featu
 # In[21]:
 
 
-# Walaa ID#44285472
 rf_scores = []
 estimators = [10, 100, 200, 500, 1000]
 for i in estimators:
@@ -351,7 +342,6 @@ The X values are not setting as direct array, instead using the X values as [1, 
 # In[22]:
 
 
-# Walaa ID#44285472
 # after training the model.a bar plot to compare the scores.
 
 rcParams['figure.figsize'] = 10, 5
@@ -368,7 +358,7 @@ plt.title('Random Forest Classifier scores for different number of estimators')
 # In[23]:
 
 
-# Walaa ID#44285472
+
 print("The score for Random Forest Classifier is {}% with {} estimators.".format(rf_scores[1]*100, [100, 500]))
 
 
@@ -380,7 +370,7 @@ print("The score for Random Forest Classifier is {}% with {} estimators.".format
 # In[24]:
 
 
-# Walaa ID#44285472
+
 print("K Neighbors Classifier score is {}% ".format(knn_scores[7]*100))
 
 print("Support Vector Classifier score is {}% ".format(svc_scores[0]*100))
@@ -395,8 +385,7 @@ print( "K Neighbors Classifier has best score of {}%" .format(maxValue * 100))
 
 # In[25]:
 
-
-# Rayana ID#44286241 
+ 
 from plotly.offline import init_notebook_mode, iplot
 init_notebook_mode(connected=True)
 import plotly.graph_objs as go
@@ -405,7 +394,6 @@ import plotly.graph_objs as go
 # In[26]:
 
 
-# Rayana ID#44286241
 scores=[knn_scores[7],svc_scores[0],dt_scores[1],rf_scores[1]]
 AlgorthmsName=["K-NN","SVM","Decision Tree","Random Forest"]
 
